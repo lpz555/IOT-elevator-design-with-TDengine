@@ -1,0 +1,27 @@
+CREATE DATABASE IOT KEEP 365 DAYS 10 BLOCKS 6 UPDATE 1
+USE IOT
+CREATE TABLE meters (ts timestamp, current double, voltage doble) TAGS (id int);
+CREATE TABLE weight_sensor(ts timestamp, weight double) TAGS (id int);
+CREATE TABLE displacement_sensor(ts timestamp, displacement double) TAGS (id int);
+CREATE TABLE temperature_sensor(ts timestamp, temperature double) TAGS (id int);
+
+
+CREATE TABLE e1 using meters tags(1)
+CREATE TABLE e2 using meters tags(2)
+CREATE TABLE w1 using weight_sensor tags(1)
+CREATE TABLE d1 using weight_sensor tags(1)
+CREATE TABLE t1(ts timestamp, temperature double) TAGS (id int);
+
+
+INSERT INTO e1 VALUES(‘2022-07-08 10:00:00.100’,10,220)
+INSERT INTO e1 VALUES(‘2022-07-08 11:00:00.100’,10.1,223.2)
+INSERT INTO e2 VALUES(‘2022-07-08 11:30:00.100’,10.3,219.5)
+INSERT INTO w1 VALUES(‘2022-07-08 11:00:00.100’,400.3)
+INSERT INTO w1 VALUES(‘2022-07-08 11:00:30.100’,100.2)
+INSERT INTO d1 VALUES(‘2022-07-08 11:00:00.100’,30.3)
+INSERT INTO t1 VALUES(‘2022-07-08 11:00:30.100’,28.18)
+
+
+Select * from e1
+Select * from meters where ts==‘2022-07-08 10:00:00.100’
+Select ts from e2 where voltage > 220 
